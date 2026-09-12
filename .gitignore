@@ -1,0 +1,24 @@
+# deps
+node_modules/
+
+# SECRETS — funded wallet seeds (private keys), never publish
+wallets.json
+vault-credit.json
+
+# XRPL DevEx capture (local identity + agent hooks)
+.xrpl-devex/
+.claude/
+.codex/
+.cursor/
+.grok/
+
+# third-party hook repo (its own git repo)
+xrpl-devex-hook/
+
+# hackathon source material (not our code)
+transfer-01a094fb/
+transfer-01a094fb.zip
+
+# runtime
+*.log
+.DS_Store

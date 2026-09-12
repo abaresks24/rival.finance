@@ -1,0 +1,11 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": null,
+  "installCommand": null,
+  "outputDirectory": "app",
+  "cleanUrls": true,
+  "headers": [
+    { "source": "/state.json", "headers": [{ "key": "cache-control", "value": "no-store" }] }
+  ]
+}
