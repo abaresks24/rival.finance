@@ -43,8 +43,8 @@ let hcOverride = null;
 async function load() {
   try {
     const r = await fetch("state.json?" + Date.now(), { cache: "no-store" });
-    if (r.ok) { S = await r.json(); document.getElementById("c-state").textContent = S.done ? "COMPLETE" : "LIVE"; }
-  } catch (e) { document.getElementById("c-state").textContent = "SAMPLE"; }
+    if (r.ok) { S = await r.json(); }
+  } catch (e) { /* fall back to sample */ }
   render();
 }
 
@@ -218,9 +218,8 @@ function escrowNote(es) {
 }
 
 function render() {
-  document.getElementById("c-scenario").textContent = (S.scenario || "—").toUpperCase();
-  document.getElementById("c-net").textContent = S.network || "XRPL Devnet";
-  document.getElementById("f-updated").textContent = "updated " + (S.updatedAt || "").slice(11, 19);
+  const fu = document.getElementById("f-updated");
+  if (fu) fu.textContent = (S.scenario || "repay").toUpperCase() + " · updated " + (S.updatedAt || "").slice(11, 19);
   renderLender(); renderCreditor(); renderTimeline();
 }
 

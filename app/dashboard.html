@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RIVAL — NAV Facility on XRPL</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <a class="brand" href="/">
+        <img class="mark-img" src="rival-logo.jpg" alt="RIVAL" />
+        <div class="sep"></div>
+        <div class="sub">NAV Facility<br />Closed-vault credit · XRPL</div>
+      </a>
+      <a class="back-link" href="/">← accueil</a>
+    </header>
+
+    <nav class="tabs">
+      <button data-view="lender" class="active">Prêteur</button>
+      <button data-view="creditor">Créancier</button>
+      <button data-view="timeline">Chronologie</button>
+    </nav>
+
+    <!-- ===================== LENDER ===================== -->
+    <section id="view-lender" class="view">
+      <div class="grid g3">
+        <div class="card">
+          <h3>Position <span class="tag" id="l-vaultid">credit vault</span></h3>
+          <div class="label-xs">Parts détenues</div>
+          <div class="big" id="l-shares">—<span class="u">SHARES</span></div>
+          <div class="note" id="l-shares-note"></div>
+        </div>
+        <div class="card">
+          <h3>Prix par part</h3>
+          <div class="label-xs">PPS (drops/part)</div>
+          <div class="big" id="l-pps">—</div>
+          <div class="note">Monte quand l'emprunteur du vault de crédit rembourse ses intérêts.</div>
+        </div>
+        <div class="card">
+          <h3>Durée modélisée</h3>
+          <div class="label-xs">Tenor 365 j (chaîne ≈ minutes)</div>
+          <div class="big" id="l-day">—<span class="u">/ 365</span></div>
+          <div class="bar"><i id="l-day-bar" style="width:0%"></i></div>
+        </div>
+      </div>
+
+      <div class="grid g2" style="margin-top:16px">
+        <div class="card">
+          <h3>Phase du vault de crédit</h3>
+          <div class="phases">
+            <div class="phase-pill" data-phase="subscription">Subscription</div>
+            <div class="phase-pill" data-phase="investment">Investissement</div>
+            <div class="phase-pill" data-phase="redemption">Redemption</div>
+          </div>
+          <div class="metric" style="margin-top:16px"><span class="k">Statut de retrait</span><span class="v" id="l-withdraw">—</span></div>
+          <div class="metric"><span class="k">Valeur de position</span><span class="v" id="l-value">—</span></div>
+          <div style="margin-top:18px; display:flex; gap:10px; align-items:center">
+            <button class="btn" id="l-borrow" disabled>Emprunter contre ma position</button>
+            <span class="status idle" id="l-borrow-hint">indisponible</span>
+          </div>
+          <div class="note">Le bouton n'est actif qu'en phase Investissement : c'est précisément quand la position est illiquide que la facilité NAV a un sens.</div>
+        </div>
+        <div class="card">
+          <h3>Facilité NAV tirée</h3>
+          <div class="metric"><span class="k">Avancé</span><span class="v" id="l-adv">—</span></div>
+          <div class="metric"><span class="k">Décote appliquée</span><span class="v" id="l-hc">—</span></div>
+          <div class="metric"><span class="k">LTV</span><span class="v" id="l-ltv">—</span></div>
+          <div class="bar split"><i id="l-ltv-bar" style="width:0%"></i><span class="mark" id="l-ltv-mark" style="left:80%"></span></div>
+          <div class="metric" style="margin-top:6px"><span class="k">Gage (escrow)</span><span class="v" id="l-escrow-status">—</span></div>
+          <div class="note" id="l-escrow-note"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CREDITOR ===================== -->
+    <section id="view-creditor" class="view hidden">
+      <div class="grid g3">
+        <div class="card">
+          <h3>Valeur du gage</h3>
+          <div class="label-xs">Parts nanties × PPS</div>
+          <div class="big" id="cr-gross">—<span class="u">XRP</span></div>
+          <div class="note" id="cr-shares-note"></div>
+        </div>
+        <div class="card">
+          <h3>Perte latente</h3>
+          <div class="label-xs">LossUnrealized</div>
+          <div class="big" id="cr-loss">—<span class="u">XRP</span></div>
+          <div class="note">Absent du ledger quand nul. Défauté à 0.</div>
+        </div>
+        <div class="card">
+          <h3>Statut de l'escrow</h3>
+          <div class="label-xs">Gage sur les parts du LP</div>
+          <div style="margin-top:14px"><span class="status idle" id="cr-escrow">—</span></div>
+          <div class="note" id="cr-cancel"></div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:16px">
+        <h3>Dimensionnement de l'avance <span class="tag">décote ajustable</span></h3>
+        <div class="grid g2" style="gap:28px">
+          <div>
+            <div class="metric"><span class="k">Valeur nette</span><span class="v" id="cr-net">—</span></div>
+            <div class="metric"><span class="k">Décote</span><span class="v" id="cr-hc">20%</span></div>
+            <input type="range" id="cr-hc-range" min="0" max="60" value="20" />
+            <div class="metric"><span class="k">Avance max</span><span class="v" id="cr-maxadv">—</span></div>
+            <div class="metric"><span class="k">Déjà avancé</span><span class="v" id="cr-adv">—</span></div>
+          </div>
+          <div>
+            <div class="label-xs">LTV courante</div>
+            <div class="big" id="cr-ltv">—<span class="u">%</span></div>
+            <div class="bar split"><i id="cr-ltv-bar" style="width:0%"></i><span class="mark" id="cr-ltv-mark" style="left:80%"></span></div>
+            <div style="margin-top:20px; display:flex; gap:10px; align-items:center">
+              <button class="btn danger" id="cr-seize" disabled>Saisir le gage</button>
+              <span class="status idle" id="cr-seize-hint">échéance non due</span>
+            </div>
+            <div class="note">Saisie = révélation de la préimage → <span class="mono">EscrowFinish</span>. Active seulement après échéance impayée.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== TIMELINE ===================== -->
+    <section id="view-timeline" class="view hidden">
+      <div class="card">
+        <h3>Deux cycles orchestrés <span class="tag">vault de crédit · vault de financement</span></h3>
+        <div class="label-xs" style="margin-bottom:6px">Vault de crédit</div>
+        <div class="tl-track" id="tl-credit"></div>
+        <div class="label-xs" style="margin:22px 0 6px">Vault de financement</div>
+        <div class="tl-track" id="tl-funding"></div>
+        <div class="note">La fenêtre d'escrow (ambre) doit se fermer <b>avant</b> la RedemptionDate du vault de crédit — sinon les parts sont hors du compte du LP quand le retrait ouvre.</div>
+      </div>
+
+      <div class="grid g2" style="margin-top:16px">
+        <div class="card">
+          <h3>Les quatre inégalités <span class="tag">l'ordonnanceur rendu visible</span></h3>
+          <div id="ineq-list"></div>
+        </div>
+        <div class="card">
+          <h3>Journal on-chain <span class="tag" id="tl-count">—</span></h3>
+          <div class="feed" id="feed"></div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <span>RIVAL — NAV lending on XRPL</span>
+      <span id="f-updated">—</span>
+    </footer>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

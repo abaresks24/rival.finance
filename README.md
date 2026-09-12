@@ -2,7 +2,7 @@
 
 # RIVAL — NAV Facility on XRPL
 
-**Rival-finance · XRPL Lending Protocol Hackathon 2026**
+**rival.finance**
 
 *Finance an illiquid closed-vault position without breaking the vault.*
 

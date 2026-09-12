@@ -22,3 +22,4 @@ transfer-01a094fb.zip
 # runtime
 *.log
 .DS_Store
+.vercel
