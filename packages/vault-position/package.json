@@ -1,0 +1,12 @@
+{
+  "name": "@xrpl-nav/vault-position",
+  "version": "0.1.0",
+  "description": "Value a Single-Asset-Vault position from outside the vault (XLS-65). Client-injected fetch + pure integer compute. Zero production dependencies.",
+  "type": "module",
+  "main": "index.mjs",
+  "exports": { ".": "./index.mjs", "./compute": "./compute.mjs", "./fetch": "./fetch.mjs" },
+  "bin": { "vault-position": "./cli.mjs" },
+  "scripts": { "test": "node test.mjs" },
+  "keywords": ["xrpl", "xls-65", "vault", "mpt", "valuation", "nav-lending"],
+  "license": "MIT"
+}

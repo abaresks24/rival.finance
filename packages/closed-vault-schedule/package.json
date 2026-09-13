@@ -1,0 +1,12 @@
+{
+  "name": "@xrpl-nav/closed-vault-schedule",
+  "version": "0.1.0",
+  "description": "Immutable-date scheduler for closed-ended XRPL vault loops (XLS-65/66/85). Pure, zero-dependency, guarantees the four NAV-facility invariants.",
+  "type": "module",
+  "main": "index.mjs",
+  "exports": { ".": "./index.mjs" },
+  "bin": { "closed-vault-schedule": "./cli.mjs" },
+  "scripts": { "test": "node test.mjs" },
+  "keywords": ["xrpl", "xls-65", "xls-66", "vault", "ripple-epoch", "nav-lending"],
+  "license": "MIT"
+}
