@@ -137,3 +137,32 @@
 html, body { background: #000; }
 body { font-family: var(--font-display), system-ui, sans-serif; }
 .font-mono, .mono { font-family: var(--font-mono), ui-monospace, monospace; }
+
+/* square glass surface — the RIVAL card language */
+.glass {
+  background: rgba(255, 255, 255, 0.035);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+}
+/* make the react-bits SpotlightCard square + glass (two-class specificity wins) */
+.card-spotlight.rival-vault {
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.035);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  padding: 0;
+  --spotlight-color: rgba(255, 255, 255, 0.14);
+}
+.card-spotlight.rival-vault:hover { border-color: rgba(255, 255, 255, 0.22); }
+
+/* faint square grid, for structure */
+.grid-lines {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+/* hairline label */
+.eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--rival-muted); }
