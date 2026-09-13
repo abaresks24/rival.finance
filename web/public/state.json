@@ -1,0 +1,201 @@
+{
+  "brand": "RIVAL",
+  "scenario": "repay",
+  "network": "XRPL Devnet",
+  "explorerTx": "https://devnet.xrpl.org/transactions/",
+  "accounts": {
+    "GERANT_CREDIT": "rQa7sajqHtoSgLfaiTZJdgZnzmkdxLRBt4",
+    "LP": "r3KkhvDaEnR9Q2bMVaLnUDwrGZjfRBseKL",
+    "EMPRUNTEUR": "rfcNhZbmisB9v3CQPGjJHmrW7JbNrpRqd3",
+    "GERANT_NAV": "rnqrSSshJuCA5CbTdoDveeqbauvjXnphxJ",
+    "LP_NAV": "r4gzKKCu4e9rjCVGxTah5jEs26B1XE7auR"
+  },
+  "vaults": {
+    "credit": {
+      "kind": "credit",
+      "vaultID": "4A07945B44B6062BA11422C646CD8DED88D3C919D325D5D614FE1EF04BED085F",
+      "shareMPTID": "00000001BC45463174E870E52AC07340085606F36D4FFBC6",
+      "owner": "rQa7sajqHtoSgLfaiTZJdgZnzmkdxLRBt4",
+      "loanBrokerID": "A5C66D69DB4F4D695069C090DEAEF340BDCD5054BF5DB4C99CEEA1BF6D94DEC1",
+      "assetsTotal": "0",
+      "assetsAvailable": "0",
+      "lossUnrealized": "0",
+      "sharesTotal": "0",
+      "ppsDrops": 0,
+      "assetsTotalXrp": 0,
+      "realLoanID": "13E2F61344933B742FAD38F22678A3B0B11272254DD45D8719AA9F68C954929F"
+    },
+    "funding": {
+      "kind": "funding",
+      "vaultID": "5A6AC1C4C7D6EBEAF5984D2F90E20804A360FD86AA139EEC032A23A4BEFD707A",
+      "shareMPTID": "000000015C5C96228029DFD28490A610B24CC532E38D9449",
+      "owner": "rnqrSSshJuCA5CbTdoDveeqbauvjXnphxJ",
+      "loanBrokerID": "6204A6D83D0A2283F7B4B4B3E81840D8D2A67062BE02D34F3337C0F949E3E32C",
+      "assetsTotal": "30000006",
+      "assetsAvailable": "30000006",
+      "lossUnrealized": "0",
+      "sharesTotal": "30000000",
+      "ppsDrops": 1.0000002,
+      "assetsTotalXrp": 30.000006
+    }
+  },
+  "facility": {
+    "haircut": 0.2,
+    "ppsDrops": 1,
+    "grossXrp": 40,
+    "netXrp": 40,
+    "maxAdvanceXrp": 32,
+    "advancedXrp": 14,
+    "borrower": "r3KkhvDaEnR9Q2bMVaLnUDwrGZjfRBseKL",
+    "loanID": "32AF5836D20ADB584DC480680E1DFF846E91F97AFF01C56E00BFD0C2FDBFE8F2"
+  },
+  "escrow": {
+    "seq": 5256899,
+    "condition": "A0258020E671FEA5C479F91C7D75397C96F5F4A669A353B60C690DD87CAC2EC1922C407D810120",
+    "cancelAfter": {
+      "epoch": 842545881,
+      "iso": "2026-09-12T16:31:21.000Z"
+    },
+    "shares": "40000000",
+    "pledger": "r3KkhvDaEnR9Q2bMVaLnUDwrGZjfRBseKL",
+    "creditor": "rnqrSSshJuCA5CbTdoDveeqbauvjXnphxJ",
+    "hash": "E0DD5BF79869FD1481448F9F45D6BA24EB0C268A0EC1DDF7A846730360C44BBE",
+    "status": "released"
+  },
+  "timeline": [
+    {
+      "id": "credit_vault",
+      "label": "Credit vault created (closed-ended, public)",
+      "hash": "3C987EA6E0C125B9A3987D81442020A11C8EBFB605D973FD8E6BCAD8E403C0F0",
+      "at": "2026-09-12T16:27:53.112Z"
+    },
+    {
+      "id": "funding_vault",
+      "label": "Funding vault created (closed-ended, public)",
+      "hash": "D98FC9E95A2CEB0A776DF9F9320EBA352AD1B4EF4C62CE651B9ED72629BDAFAF",
+      "at": "2026-09-12T16:27:58.149Z"
+    },
+    {
+      "id": "lp_deposit",
+      "label": "LP deposits 40 XRP into credit vault",
+      "hash": "E67E99843536DDB5C11C2ED672775F93BACFBD9C1BBC8D3BDF13809895C125A8",
+      "at": "2026-09-12T16:28:02.967Z"
+    },
+    {
+      "id": "lpnav_deposit",
+      "label": "LP_NAV deposits 30 XRP into funding vault",
+      "hash": "DEA29EAAD2E0E64AE2DFCAD604DE55A608429962C04865576765CE714336982E",
+      "at": "2026-09-12T16:28:07.814Z"
+    },
+    {
+      "id": "credit_broker",
+      "label": "Credit broker + 8 XRP first-loss cover",
+      "hash": "4ECE86ACB2B6AAC1FF5BCB44780DD522346540AF9330CFF5FC5B5F04B8D1DCB5",
+      "at": "2026-09-12T16:28:20.044Z"
+    },
+    {
+      "id": "funding_broker",
+      "label": "Funding broker + 6 XRP first-loss cover",
+      "hash": "ABCDE3EE6810FC7350CE3182BDDA5B29843D70CB74298FFD758B69E9F64CDB37",
+      "at": "2026-09-12T16:28:32.543Z"
+    },
+    {
+      "id": "investment",
+      "label": "Investment phase open — deposits/withdrawals locked",
+      "hash": null,
+      "at": "2026-09-12T16:29:40.736Z"
+    },
+    {
+      "id": "real_loan",
+      "label": "Real loan 20 XRP originated to EMPRUNTEUR (co-signed)",
+      "hash": "09A6C24DD007EDCA73E35F977DF7ACD86C2818424082EB6996A4E2C890D92F78",
+      "at": "2026-09-12T16:29:47.189Z"
+    },
+    {
+      "id": "pledge",
+      "label": "LP pledges 40M shares via escrow",
+      "hash": "E0DD5BF79869FD1481448F9F45D6BA24EB0C268A0EC1DDF7A846730360C44BBE",
+      "at": "2026-09-12T16:29:52.309Z"
+    },
+    {
+      "id": "facility",
+      "label": "NAV facility 14 XRP drawn by LP against pledge",
+      "hash": "85CE8FEB92F5F1D6F29ECA2C0889430EAD75BD71B686E4F2B549E793A1C68748",
+      "at": "2026-09-12T16:29:59.272Z"
+    },
+    {
+      "id": "real_pay2",
+      "label": "EMPRUNTEUR repays real loan in full — credit PPS rises",
+      "hash": "8B6BF8638B4F7CF57C72B99C08932D8C5CF38F2FE04E5CCE571038C104F2EFDE",
+      "at": "2026-09-12T16:30:48.936Z"
+    },
+    {
+      "id": "fac_pay2",
+      "label": "LP repays NAV facility in full — obligation cleared",
+      "hash": "CB8D893231F0CF2E06D67A5E74C8625DA2A1984A724AABB03DD2F08CECC127A7",
+      "at": "2026-09-12T16:30:55.393Z"
+    },
+    {
+      "id": "release",
+      "label": "Escrow expires — LP reclaims pledged shares",
+      "hash": "CD73EAD9DCB7D126B881E129B68D7F9B2437C753EC4AE3D39770DA604141F9D2",
+      "at": "2026-09-12T16:31:36.053Z"
+    },
+    {
+      "id": "withdraw",
+      "label": "LP redeems shares for capital + accrued yield",
+      "hash": "2FC04F407B4344C1E7EC43D0D3A23DB12D31080B441A2AE4758ABB15F72CC584",
+      "at": "2026-09-12T16:32:49.769Z"
+    }
+  ],
+  "dates": {
+    "t0": {
+      "epoch": 842545666,
+      "iso": "2026-09-12T16:27:46.000Z"
+    },
+    "subscriptionDate": {
+      "epoch": 842545776,
+      "iso": "2026-09-12T16:29:36.000Z"
+    },
+    "originate": {
+      "epoch": 842545796,
+      "iso": "2026-09-12T16:29:56.000Z"
+    },
+    "paymentInterval": 60,
+    "lastRealPayment": {
+      "epoch": 842545856,
+      "iso": "2026-09-12T16:30:56.000Z"
+    },
+    "lastFacilityPayment": {
+      "epoch": 842545856,
+      "iso": "2026-09-12T16:30:56.000Z"
+    },
+    "facilityMaturity": {
+      "epoch": 842545856,
+      "iso": "2026-09-12T16:30:56.000Z"
+    },
+    "escrowCancelAfter": {
+      "epoch": 842545881,
+      "iso": "2026-09-12T16:31:21.000Z"
+    },
+    "creditRedemptionDate": {
+      "epoch": 842545956,
+      "iso": "2026-09-12T16:32:36.000Z"
+    },
+    "fundingRedemptionDate": {
+      "epoch": 842545956,
+      "iso": "2026-09-12T16:32:36.000Z"
+    }
+  },
+  "inequalities": {
+    "(1) lastRealPayment < creditRedemption": true,
+    "(2) lastFacilityPayment < fundingRedemption": true,
+    "(3) facilityMaturity < escrowCancelAfter": true,
+    "(4) escrowCancelAfter < creditRedemption": true,
+    "floor credit window >= 180": true,
+    "floor funding window >= 180": true
+  },
+  "updatedAt": "2026-09-12T16:32:50.419Z",
+  "phase": "redemption",
+  "done": true
+}
